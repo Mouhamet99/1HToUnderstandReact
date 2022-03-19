@@ -31,17 +31,20 @@ export default class App extends React.Component {
       nom: this.state.inputText
     });
     this.setState({ clients, inputText: "" });
+  };
 
-    // const id = this.state.clients.length + 1;
-    // const nom = this.state.inputText;
-    // const clients = [...this.state.clients, { id, nom }];
-    // this.setState({ clients, inputText: "" });
+  handleDelete = (id) => {
+    const clients = this.state.clients.slice();
+    const index = this.state.clients.findIndex((client) => client.id === id);
+    clients.splice(index, 1);
+    this.setState({ clients });
   };
 
   render() {
     const clients = this.state.clients.map((client) => (
       <li key={client.id}>
-        {client.nom} <button>X</button>
+        {client.nom}
+        <button onClick={() => this.handleDelete(client.id)}>X</button>
       </li>
     ));
 
