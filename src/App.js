@@ -1,4 +1,5 @@
 import React from "react";
+import Client from "./components/Client";
 import "./styles.css";
 
 export default class App extends React.Component {
@@ -13,7 +14,6 @@ export default class App extends React.Component {
   };
 
   handleClcik = () => {
-    console.log(this.state);
     this.setState({ compteur: this.state.compteur + 1 });
   };
 
@@ -23,29 +23,31 @@ export default class App extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     if (this.state.inputText === "") return false;
 
     const clients = this.state.clients.slice();
+
     clients.push({
       id: this.state.clients.length + 1,
       nom: this.state.inputText
     });
+
     this.setState({ clients, inputText: "" });
   };
 
   handleDelete = (id) => {
     const clients = this.state.clients.slice();
     const index = this.state.clients.findIndex((client) => client.id === id);
+
     clients.splice(index, 1);
+
     this.setState({ clients });
   };
 
   render() {
     const clients = this.state.clients.map((client) => (
-      <li key={client.id}>
-        {client.nom}
-        <button onClick={() => this.handleDelete(client.id)}>X</button>
-      </li>
+      <Client infos={client} onDelete={this.handleDelete} />
     ));
 
     return (
