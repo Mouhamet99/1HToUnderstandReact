@@ -1,4 +1,12 @@
 .App {
   font-family: sans-serif;
-  text-align: center;
+}
+ul {
+  margin: 10px;
+}
+ul li {
+  margin: 10px auto;
+}
+ul li button {
+  margin-left: 20px;
 }
