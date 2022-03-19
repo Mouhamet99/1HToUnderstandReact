@@ -14,7 +14,7 @@ export default class App extends React.Component {
 
   handleClcik = () => {
     console.log(this.state);
-    this.setState({ compteur: ++this.state.compteur });
+    this.setState({ compteur: this.state.compteur + 1 });
   };
 
   handleChange = (e) => {
@@ -24,10 +24,18 @@ export default class App extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.inputText === "") return false;
-    const id = this.state.clients.length + 1;
-    const nom = this.state.inputText;
-    const clients = [...this.state.clients, { id, nom }];
+
+    const clients = this.state.clients.slice();
+    clients.push({
+      id: this.state.clients.length + 1,
+      nom: this.state.inputText
+    });
     this.setState({ clients, inputText: "" });
+
+    // const id = this.state.clients.length + 1;
+    // const nom = this.state.inputText;
+    // const clients = [...this.state.clients, { id, nom }];
+    // this.setState({ clients, inputText: "" });
   };
 
   render() {
