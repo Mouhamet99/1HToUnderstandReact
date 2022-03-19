@@ -9,6 +9,9 @@ export default class App extends React.Component {
       { id: 3, nom: "Anta Mbaye" }
     ]
   };
+  handleClcik = () => {
+    console.log(this.state);
+  };
   render() {
     const clients = this.state.clients.map((client) => (
       <li key={client.id}>
@@ -21,6 +24,7 @@ export default class App extends React.Component {
         <ul>{clients}</ul>
         <input placeholder="entrez votre produit" />
         <input type="submit" value="Ajouter" />
+        <button onClick={this.handleClcik}>Click me</button>
       </div>
     );
   }
